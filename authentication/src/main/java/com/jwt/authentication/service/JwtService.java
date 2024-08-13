@@ -18,11 +18,13 @@ public class JwtService {
     private final String jwtSecret = generateSecretKey();
 
     public String generateToken(Authentication authentication) {
+        return generateTokenWithUsername(authentication.getName());
+    }
 
-        String username = authentication.getName();
+    public String generateTokenWithUsername(String username) {
         Date currentDate = new Date();
         // 1 hour = 3600000 ms;
-        long jwtExpirationDate = 3600000;
+        long jwtExpirationDate = 60000;
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
 
         return Jwts.builder()

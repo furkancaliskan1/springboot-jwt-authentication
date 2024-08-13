@@ -1,7 +1,8 @@
 package com.jwt.authentication.controller;
 
-import jakarta.persistence.Entity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,6 @@ public class PageController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("user")
     public String getUserProfile(){
-        return "user_profile";
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

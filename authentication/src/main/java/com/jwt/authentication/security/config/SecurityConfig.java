@@ -40,7 +40,7 @@ public class SecurityConfig {
         http.
                 csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                        request.requestMatchers("api/v*/register", "api/v*/login/**").permitAll();
+                        request.requestMatchers("api/v*/register", "api/v*/login/**", "api/v*/refreshToken/**").permitAll();
                         request.anyRequest().authenticated();
                 })
                 .authenticationProvider(daoAuthenticationProvider())
